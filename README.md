@@ -1,18 +1,29 @@
-# Transaction Generators
+# Project 26
 
-Модуль для работы с транзакциями, включая генераторы для фильтрации транзакций по валюте, получения описаний операций и генерации номеров карт.
+Это проект, в котором реализованы генераторы для работы с транзакциями и номерами карт.
 
-## Пример использования
+## Функции
 
-### Фильтрация транзакций по валюте:
+### 1. filter_by_currency
+Функция для фильтрации транзакций по валюте.
+
+#### Пример использования:
 
 ```python
-from generators.generators import filter_by_currency
+from generators import filter_by_currency
 
 transactions = [
-    # Пример транзакций...
+    {
+        "operationAmount": {
+            "currency": {"code": "USD"}
+        }
+    },
+    {
+        "operationAmount": {
+            "currency": {"code": "RUB"}
+        }
+    }
 ]
 
-usd_transactions = filter_by_currency(transactions, "USD")
-for transaction in usd_transactions:
-    print(transaction)
+filtered = filter_by_currency(transactions, "USD")
+print(list(filtered))  # Выведет только транзакции с валютой USD
